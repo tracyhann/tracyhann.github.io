@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tracy (Huiwen) Han</title>
+    <meta name="description" content="Tracy (Huiwen) Han — machine learning for the brain: generative neuroimaging, graph learning for psychiatric neuromodulation, and reinforcement learning for LLM agents.">
+    <meta name="author" content="Tracy (Huiwen) Han">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Tracy (Huiwen) Han">
+    <meta property="og:description" content="Research, publications and contact information for Tracy (Huiwen) Han.">
+    <link rel="icon" type="image/png" href="imgs/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+/* Colours and art come from Cabbageland. */
+:root {
+    --paper: #f6f2e6;
+    --paper-card: #fffdf7;
+    --paper-deep: #efe9d6;
+    --line: #e2dbc6;
+    --ink: #1f2a1f;
+    --muted: #5f6a5b;
+    --leaf: #2f6b3a;
+    --accent: #c9711f;
+    --accent-soft: #fff3e3;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+    background: linear-gradient(180deg, #eaf2df 0%, var(--paper) 32%, #fbf9f2 85%);
+    background-attachment: fixed;
+}
+/* faint paper grain */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .35;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .4 0 0 0 0 .3 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a { color: var(--leaf); text-decoration: none; }
+a:hover { color: var(--accent); }
+.bold { font-weight: 600; }
+
+.page {
+    position: relative;
+    width: min(1080px, 100% - 32px);
+    margin: 0 auto;
+    padding: 28px 0 24px;
+}
+
+/* ---------- Banner ---------- */
+.banner {
+    position: relative;
+    display: block;
+    margin: 0 0 30px;
+    border-radius: 18px;
+    transition: transform .25s ease;
+}
+.banner img.scene {
+    display: block;
+    width: 100%;
+    height: clamp(130px, 24vw, 260px);
+    object-fit: cover;
+    object-position: center 50%;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    box-shadow: 0 2px 0 #e6dfca, 0 12px 28px rgba(60, 72, 40, .14);
+    transition: box-shadow .25s ease;
+}
+.banner:hover { transform: translateY(-2px); }
+.banner:hover img.scene { box-shadow: 0 2px 0 #e6dfca, 0 16px 32px rgba(60, 72, 40, .2); }
+.banner:hover .credit { color: var(--accent); }
+.banner .credit {
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: rgba(255, 253, 247, .85);
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* ---------- Profile ---------- */
+.profile {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 36px;
+    align-items: start;
+}
+.profile .col-avatar { text-align: center; }
+.profile .avatar {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 1px solid var(--line);
+    background: var(--paper-card);
+    box-shadow: 0 2px 0 #e6dfca;
+}
+.contact {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+.icon-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+}
+.icon-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
+    padding: 0 4px;
+    color: var(--leaf);
+    font-weight: 600;
+}
+.icon-links a:hover { color: var(--accent); }
+.icon-links svg { width: 24px; height: 24px; fill: currentColor; }
+
+.name {
+    margin: 0 0 .6rem;
+    font-size: 2.4em;
+    line-height: 1.05;
+    font-weight: 400;
+    color: #000;
+}
+.bio p { margin: 0 0 .75rem; }
+
+/* ---------- Sections ---------- */
+section { margin-top: 36px; }
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 .6rem;
+    font-size: 22px;
+    font-weight: 600;
+    color: #000;
+}
+.section-title img { width: 26px; height: 26px; }
+.section-note { margin: -.3rem 0 .8rem; color: #8a8f80; font-size: 14px; }
+
+.news-list { margin: 0; padding-left: 20px; }
+.news-list li { margin: 0 0 10px; }
+.news-list li::marker { color: var(--leaf); }
+
+/* ---------- Publications ---------- */
+.pub-card {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    gap: 22px;
+    align-items: start;
+    margin-bottom: 18px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--paper-card);
+    box-shadow: 0 2px 0 #ece5d0;
+}
+.pub-card .thumb img,
+.pub-card .thumb video {
+    display: block;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #fff;
+}
+.pub-card .thumb video { background: #000; }
+.thumb-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 130px;
+    padding: 14px;
+    border: 1px dashed #d4cbb0;
+    border-radius: 12px;
+    background: var(--paper-deep);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+}
+.pub-card .thumb .thumb-placeholder img { width: 72px; height: 72px; object-fit: contain; border: 0; border-radius: 0; background: none; }
+.pub-card .title {
+    margin: 0 0 4px;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+.pub-card .authors { margin: 0 0 4px; color: #666; line-height: 1.4; }
+.pub-card .authors u { color: #222; font-weight: 600; text-decoration: none; }
+.pub-card .venue { margin: 0; color: #333; font-weight: 600; }
+.pub-card .venue .oral { color: #b3261e; font-weight: 700; }
+.pub-card .venue .detail { display: block; color: #777; font-weight: 400; font-size: 14px; }
+.pub-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.pub-links a {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border: 1px solid #d3cbb2;
+    border-radius: 999px;
+    background: #fffdf6;
+    color: #333;
+    font-weight: 600;
+    line-height: 1;
+    transition: background-color .2s, border-color .2s, color .2s;
+}
+.pub-links a:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+/* ---------- Cabbageland gallery ---------- */
+.photo-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 24px) / 3);
+    gap: 12px;
+    overflow-x: auto;
+    padding: 2px 0 10px;
+    scroll-snap-type: x mandatory;
+}
+.photo-grid figure { margin: 0; scroll-snap-align: start; }
+.photo-grid img {
+    display: block;
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+}
+.photo-grid figcaption { margin-top: 4px; color: var(--muted); font-size: 14px; text-align: center; }
+
+/* ---------- Footer ---------- */
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 44px;
+    color: #7a8073;
+    font-size: 14px;
+    text-align: left;
+}
+footer a { color: #6b7466; }
+footer .mascot { width: 72px; height: auto; }
+@media (prefers-reduced-motion: no-preference) {
+    footer .mascot { animation: bob 2.6s ease-in-out infinite; }
+}
+@keyframes bob { 50% { transform: translateY(-5px) rotate(-2deg); } }
+
+@media (max-width: 767px) {
+    .page { padding-top: 16px; }
+    .profile { grid-template-columns: 1fr; gap: 18px; }
+    .name { font-size: 2.1em; text-align: center; }
+    .pub-card { grid-template-columns: 1fr; gap: 12px; }
+    .photo-grid { grid-auto-columns: 70%; }
+    .photo-grid img { height: 200px; }
+    footer { flex-direction: column; text-align: center; }
+}
+    </style>
+</head>
+
+<body>
+<main class="page">
+
+    <a class="banner" href="https://cabbageland.github.io/" target="_blank" rel="noopener" title="Visit Cabbageland">
+        <img class="scene" src="imgs/art/cabbageland-day-signs.webp" alt="Paper-craft panorama of Cabbageland with signs for escape-the-void, compose boredom, nerd's farm and my-world-in-XD around a giant cabbage">
+        <span class="credit">Visit Cabbageland &#8599;</span>
+    </a>
+
+    <!-- ===================== Profile ===================== -->
+    <div class="profile">
+        <div class="col-avatar">
+            <img class="avatar" src="imgs/avatar.webp" alt="Cabbageclaw, a cabbage robot in a red bow tie">
+            <div class="contact">
+                <a href="mailto:tracyhan@stanford.edu">tracyhan@stanford.edu</a>
+                <div class="icon-links">
+                    <a href="https://github.com/tracyhann" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+                        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                    </a>
+                    <a href="Tracy_Han_CV.pdf" target="_blank" rel="noopener" aria-label="CV" title="CV">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v1.6H8V13zm0 3.4h8V18H8v-1.6zm0-6.8h3v1.6H8V9.6z"/></svg>
+                        <span>CV</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-info">
+            <h1 class="name">Tracy (Huiwen) Han</h1>
+            <!-- DRAFT BIO: edit freely -->
+            <div class="bio">
+                <p>I am a Research Assistant in the <a href="https://bsl.stanford.edu/">Brain Stimulation Lab</a> at Stanford University, working with <a href="https://profiles.stanford.edu/christopher-austelle">Dr. Christopher Austelle</a> and <a href="https://profiles.stanford.edu/david-spiegel">Dr. David Spiegel</a>, and a visiting student in the <a href="https://phai-lab.github.io/">PHAI Lab</a> at Texas A&amp;M University, advised by <a href="https://zhiwenfan.github.io/">Dr. Zhiwen Fan</a>. I received my B.A. in Biology from Boston University, with minors in Computer Science and Business Administration.</p>
+                <p>I work where machine learning meets the brain. My research spans generative models of 3D brain MRI, hierarchical graph learning that finds treatment-related network organization in neuroimaging, and reinforcement learning that assigns step-level credit to LLM agents on long-horizon tasks. I also build evidence-grounded AI agents for science and medicine.</p>
+                <p>At Stanford, I built the <a href="https://tracyhann.github.io/bsl-sporr-project-report/">multimodal clinical-trial data infrastructure</a> behind our psychiatric neuromodulation trials, funded by a Stanford Rigor &amp; Reproducibility grant.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== Highlights ===================== -->
+    <section>
+        <h2 class="section-title"><img src="imgs/art/icon-cabbage.webp" alt="">Highlights</h2>
+        <ul class="news-list">
+            <li><span class="bold">[10/2026]</span> 💻 The <a href="https://github.com/tracyhann/NetHGL">NetHGL</a> code is public on GitHub.</li>
+            <li><span class="bold">[10/2026]</span> 📄 Our surface&ndash;volume self-supervised representation learning of brain MRI for genetic discovery is on <a href="https://arxiv.org/abs/2610.02114">arXiv</a>.</li>
+            <li><span class="bold">[09/2026]</span> 🎉 AnaDiffusion and DarkVGGT were both accepted to NeurIPS 2026!</li>
+            <li><span class="bold">[09/2025]</span> 🎤 HERMES was accepted for an oral presentation at the 1st Workshop on Multimodal Large Language Models in Clinical Practice, MICCAI 2025.</li>
+        </ul>
+    </section>
+
+    <!-- ===================== Publications ===================== -->
+    <section>
+        <h2 class="section-title"><img src="imgs/art/icon-book.webp" alt="">Publications</h2>
+        <p class="section-note">* First or co-first author.</p>
+
+        <article class="pub-card">
+            <div class="thumb"><img src="imgs/publications/ccpo.webp" alt="CCPO pipeline: group rollout and peer matching, context representation, weighted group baseline, dual contextual credit, advantage and update" loading="lazy"></div>
+            <div>
+                <h3 class="title">Contextual Credit Policy Optimization</h3>
+                <p class="authors"><u>Huiwen Han*</u>, Ziyao Zeng, Zihao Zhu, Sisong Bei, Hao Wang, Hongyu Xu, Yan Han, Degui Zhi, Zhiwen Fan</p>
+                <p class="venue">Under review, 2026</p>
+            </div>
+        </article>
+
+        <article class="pub-card">
+            <div class="thumb"><img src="imgs/publications/anadiffusion.webp" alt="AnaDiffusion compared with baselines on 3D brain MRI generation" loading="lazy"></div>
+            <div>
+                <h3 class="title">AnaDiffusion: Anatomically Compositional Latent Diffusion for Controllable 3D Brain MRI Generation</h3>
+                <p class="authors"><u>Huiwen Han*</u>, Lulin Liu*, Bangya Liu, Yuanhao Cai, Nuo Chen, Xiaoqing Wang, Ziqian Xie, Chenyu You, Shuiwang Ji, Degui Zhi, Zhiwen Fan</p>
+                <p class="venue">NeurIPS 2026</p>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2608.23014" target="_blank" rel="noopener">arXiv</a>
+                    <a href="https://anadiffusion.github.io/" target="_blank" rel="noopener">Project Page</a>
+                    <a href="https://github.com/phai-lab/AnaDiffusion" target="_blank" rel="noopener">Code</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="pub-card">
+            <div class="thumb"><img src="imgs/publications/nethgl.webp" alt="NetHGL pipeline: ROI graph construction from longitudinal fMRI and network-aware hierarchical graph learning" loading="lazy"></div>
+            <div>
+                <h3 class="title">NetHGL: Hierarchical Graph Learning Identifies Remission-Associated Network Organization in Treatment-Resistant Depression Following Stanford Neuromodulation Therapy</h3>
+                <p class="authors"><u>Huiwen Han*</u>, Adam R. Pines, Yixin Wang, Yu Zhang, Christopher W. Austelle</p>
+                <p class="venue">Paper coming soon</p>
+                <div class="pub-links">
+                    <a href="https://github.com/tracyhann/NetHGL" target="_blank" rel="noopener">Code</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="pub-card">
+            <div class="thumb">
+                <video class="hover-video" muted loop playsinline preload="metadata" poster="imgs/publications/darkvggt-cover.webp" data-preview-time="3.3" aria-label="DarkVGGT thermal reconstruction demo">
+                    <source src="videos/darkvggt.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div>
+                <h3 class="title">DarkVGGT: Seeing Through Darkness Using Thermal Geometry without Daylight Tax</h3>
+                <p class="authors">Minseong Kweon, Wenyuan Zhao, Nuo Chen, Lulin Liu, <u>Huiwen Han</u>, Zihao Zhu, Srinivas Shakkottai, Chao Tian, Zhiwen Fan</p>
+                <p class="venue">NeurIPS 2026</p>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2606.11326" target="_blank" rel="noopener">arXiv</a>
+                    <a href="https://darkvggt.github.io/" target="_blank" rel="noopener">Project Page</a>
+                    <a href="https://github.com/phai-lab/DarkVGGT" target="_blank" rel="noopener">Code</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="pub-card">
+            <div class="thumb"><img src="imgs/publications/surface-volume.webp" alt="MEVA: fusing T1 MRI and cortical mesh encoders into 128 phenotypes for genetic discovery" loading="lazy"></div>
+            <div>
+                <h3 class="title">Surface-volume self-supervised representation learning of brain MRI for genetic discovery</h3>
+                <p class="authors">Tian Xia*, Nuo Chen*, Zihao Zhu, <u>Huiwen Han</u>, Ziqian Xie, Zhiwen Fan, Degui Zhi</p>
+                <p class="venue">arXiv preprint, 2026</p>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2610.02114" target="_blank" rel="noopener">arXiv</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="pub-card">
+            <div class="thumb"><div class="thumb-placeholder"><img src="imgs/art/icon-book.webp" alt="">Under review</div></div>
+            <div>
+                <h3 class="title">Magnesium-Ibogaine Alters Dynamic, but Not Static, Functional Connectivity of the Default Mode Network Is Associated with Mystical Experiences and Clinical Outcomes after Magnesium-Ibogaine Treatment in Veterans with Traumatic Brain Injury</h3>
+                <p class="authors">Kenneth Shinozuka, Clayton Olash, <u>Huiwen Han</u>, Azeezat Azeez, Malvika Sridhar, Andrew D. Geoly, Catherine Daye, Saron Hunegnaw, Kirsten N. Cherian, Jackob N. Keynan, Randi Brown, Derrick M. Buchanan, John P. Coetzee, Ian H. Kratter, Raag D. Airan, Martijn Arns, Maheen M. Adamson, Manish Saggar, Camarin Rolle</p>
+                <p class="venue">Under review, 2026</p>
+            </div>
+        </article>
+
+        <article class="pub-card">
+            <div class="thumb"><div class="thumb-placeholder"><img src="imgs/art/icon-cabbage.webp" alt="">In preparation</div></div>
+            <div>
+                <h3 class="title">Stanford Neuromodulation Therapy decouples subgenual cortex from the default mode network: evidence from a randomized controlled trial in treatment-resistant depression</h3>
+                <p class="venue">In preparation, 2026</p>
+            </div>
+        </article>
+
+        <article class="pub-card">
+            <div class="thumb"><div class="thumb-placeholder"><img src="imgs/art/icon-code.webp" alt="">MICCAI 2025 Workshop</div></div>
+            <div>
+                <h3 class="title">Trustworthy Clinical Thinking in MLLMs: Hierarchical Energy-Based Reasoning for Interpretable Medical Scans (HERMES)</h3>
+                <p class="authors">Florence X. Doo, <u>Huiwen Han</u>, Bradley A. Maron, Heng Huang</p>
+                <p class="venue">AI for Clinical Applications, LNCS, Springer, 2025 <span class="oral">(Oral)</span>
+                    <span class="detail">1st Workshop on Multimodal Large Language Models in Clinical Practice, MICCAI 2025</span></p>
+                <div class="pub-links">
+                    <a href="https://doi.org/10.1007/978-3-032-06004-4_24" target="_blank" rel="noopener">Paper</a>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ===================== Service ===================== -->
+    <section>
+        <h2 class="section-title"><img src="imgs/art/icon-code.webp" alt="">Service</h2>
+        <ul class="news-list">
+            <li>Reviewer: <i>Transactions on Machine Learning Research</i></li>
+            <li>Reviewer: <i>IEEE Transactions on Circuits and Systems for Video Technology</i></li>
+            <li>Co-reviewer: <i>Psychiatry and Clinical Neurosciences</i></li>
+            <li>Co-reviewer: <i>CNS Neuroscience &amp; Therapeutics</i></li>
+        </ul>
+    </section>
+
+    <!-- ===================== Cabbageland ===================== -->
+    <section>
+        <h2 class="section-title"><img src="imgs/art/icon-cabbage.webp" alt="">Cabbageland</h2>
+        <p class="section-note">Cabbageclaw keeps me company on this site. Scroll for a day in its paper-craft world.</p>
+        <div class="photo-grid">
+            <figure><img src="imgs/art/claw-working.webp" alt="Cabbageclaw at a desk with a computer" loading="lazy"><figcaption>At work</figcaption></figure>
+            <figure><img src="imgs/art/claw-reading.webp" alt="Cabbageclaw reading a large book in the woods" loading="lazy"><figcaption>Reading in the woods</figcaption></figure>
+            <figure><img src="imgs/art/claw-at-home.webp" alt="Cabbageclaw in a greenhouse" loading="lazy"><figcaption>At home in the greenhouse</figcaption></figure>
+            <figure><img src="imgs/art/claw-night-garden.webp" alt="Cabbageclaw farming in a moonlit garden" loading="lazy"><figcaption>Farming at night</figcaption></figure>
+        </div>
+    </section>
+
+    <footer>
+        <img class="mascot" src="imgs/art/cabbageclaw.webp" alt="">
+        <div>&copy; 2026 Tracy (Huiwen) Han &amp; cabbageland</div>
+    </footer>
+</main>
+
+<script>
+// Pause hover videos on a preview frame; play while the pointer is over them.
+document.querySelectorAll('.hover-video').forEach(function (video) {
+    var previewTime = parseFloat(video.dataset.previewTime || '0.01');
+    function reset() {
+        video.pause();
+        if (video.readyState >= 1) {
+            try { video.currentTime = Math.min(previewTime, Math.max(video.duration - 0.01, 0)); } catch (e) {}
+        }
+    }
+    video.addEventListener('loadedmetadata', reset, { once: true });
+    video.addEventListener('mouseenter', function () {
+        video.muted = true;
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+    });
+    video.addEventListener('mouseleave', reset);
+});
+</script>
+</body>
+</html>
