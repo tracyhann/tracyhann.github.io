@@ -424,11 +424,7 @@ footer .mascot { width: 72px; height: auto; }
         </article>
 
         <article class="pub-card">
-            <div class="thumb">
-                <video class="hover-video" muted loop playsinline preload="metadata" poster="imgs/publications/darkvggt-cover.webp" data-preview-time="3.3" aria-label="DarkVGGT thermal reconstruction demo">
-                    <source src="videos/darkvggt.mp4" type="video/mp4">
-                </video>
-            </div>
+            <div class="thumb"><img src="imgs/publications/darkvggt.webp" alt="DarkVGGT overview: well-lit RGB and dark RGB-T inputs produce reliable depth and 3D geometry where the VGGT baseline fails" loading="lazy"></div>
             <div>
                 <h3 class="title">DarkVGGT: Seeing Through Darkness Using Thermal Geometry without Daylight Tax</h3>
                 <p class="authors">Minseong Kweon, Wenyuan Zhao, Nuo Chen, Lulin Liu, <u>Huiwen Han</u>, Zihao Zhu, Srinivas Shakkottai, Chao Tian, Zhiwen Fan</p>
@@ -522,25 +518,5 @@ footer .mascot { width: 72px; height: auto; }
         <div>&copy; 2026 Tracy (Huiwen) Han &amp; cabbageland</div>
     </footer>
 </main>
-
-<script>
-// Pause hover videos on a preview frame; play while the pointer is over them.
-document.querySelectorAll('.hover-video').forEach(function (video) {
-    var previewTime = parseFloat(video.dataset.previewTime || '0.01');
-    function reset() {
-        video.pause();
-        if (video.readyState >= 1) {
-            try { video.currentTime = Math.min(previewTime, Math.max(video.duration - 0.01, 0)); } catch (e) {}
-        }
-    }
-    video.addEventListener('loadedmetadata', reset, { once: true });
-    video.addEventListener('mouseenter', function () {
-        video.muted = true;
-        var p = video.play();
-        if (p && p.catch) p.catch(function () {});
-    });
-    video.addEventListener('mouseleave', reset);
-});
-</script>
 </body>
 </html>
