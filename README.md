@@ -7,7 +7,7 @@ A single static page (`index.html`) served by GitHub Pages. No build step. The i
 - **Bio**: the three paragraphs under `<!-- DRAFT BIO: edit freely -->` in `index.html`.
 - **Highlights**: the `news-list` under "Highlights", newest first.
 - **Publications**: one `<article class="pub-card">` per paper. Own name goes in `<u>…</u>`, `*` marks first or co-first author, and link buttons go in `pub-links`. Papers without a figure use a `thumb-placeholder` box; replace it with `<img src="imgs/publications/…">` once a figure is public.
-- **Avatar**: `imgs/avatar.webp` (currently Cabbageclaw in a bow tie). Swap in a square photo of about 480 px.
+- **Avatar**: `imgs/avatar.webp`, a square 600 px portrait. To change it, replace the file with another square image.
 - **CV**: `Tracy_Han_CV.pdf`, copied from `Tracy_Han_CV/cvs/cv6`. Re-copy after CV edits.
 
 ## Images
