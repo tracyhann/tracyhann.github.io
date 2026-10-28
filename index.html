@@ -295,6 +295,7 @@ section { margin-top: 36px; }
     border: 1px solid var(--line);
 }
 .photo-grid figcaption { margin-top: 4px; color: var(--muted); font-size: 14px; text-align: center; }
+.photo-grid img.wide { height: auto; aspect-ratio: 16 / 9; }
 
 /* ---------- Footer ---------- */
 footer {
@@ -506,7 +507,15 @@ footer .mascot { width: 72px; height: auto; }
     <!-- ===================== Hobbies ===================== -->
     <section>
         <h2 class="section-title"><img src="imgs/art/icon-palette.webp" alt="">Hobbies</h2>
-        <p>Coming soon.</p>
+        <div class="photo-grid">
+            <figure>
+                <picture>
+                    <source srcset="imgs/hobbies/3d-printing-still.webp" media="(prefers-reduced-motion: reduce)">
+                    <img class="wide" src="imgs/hobbies/3d-printing.gif" alt="Two robot arms with hands working at a funnel and a blue tube rack" width="480" height="270" loading="lazy">
+                </picture>
+                <figcaption>3D printing</figcaption>
+            </figure>
+        </div>
     </section>
 
     <!-- ===================== Cabbageland ===================== -->
