@@ -1,4 +1,4 @@
-# Tracy (Huiwen) Han — personal website
+# Tracy Han — personal website
 
 A single static page (`index.html`) served by GitHub Pages. No build step. The illustrations come from the Cabbageland art library (`~/cabbageland/cabbageland-art-library`).
 
